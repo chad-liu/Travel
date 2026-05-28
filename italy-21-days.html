@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>義大利 21 日 · Viaggio in Italia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3e9d8;
+  --paper-deep:#ece0c9;
+  --ink:#2a2018;
+  --ink-soft:#5b4d3d;
+  --terra:#a8412a;
+  --terra-deep:#8a3220;
+  --teal:#1d5b5e;
+  --teal-deep:#15464a;
+  --ochre:#c79237;
+  --gold:#b8893a;
+  --line:#c9b794;
+  --shadow:rgba(64,40,20,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans TC",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.85;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+}
+.serif{font-family:"Noto Serif TC",serif}
+.disp{font-family:"Cormorant Garamond",serif}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,64px);background:rgba(243,233,216,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .4s,box-shadow .4s}
+nav.scrolled{border-color:var(--line);box-shadow:0 6px 30px -18px var(--shadow)}
+.nav-logo{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:600;letter-spacing:.04em;color:var(--terra)}
+.nav-logo span{color:var(--ink);font-style:italic}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.nav-links a{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;padding:6px 11px;border-radius:20px;color:var(--ink-soft);transition:.25s;white-space:nowrap}
+.nav-links a:hover{color:var(--terra)}
+.nav-links a.active{background:var(--terra);color:var(--paper)}
+@media(max-width:880px){.nav-links{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px clamp(20px,5vw,64px) 80px;z-index:2;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(199,146,55,.28),transparent 60%),radial-gradient(ellipse 60% 45% at 80% 90%,rgba(29,91,94,.22),transparent 60%),radial-gradient(ellipse 55% 40% at 15% 80%,rgba(168,65,42,.18),transparent 60%)}
+.hero-kicker{font-size:.82rem;letter-spacing:.5em;text-transform:uppercase;color:var(--terra);font-weight:400;margin-bottom:28px;opacity:0;animation:fade .9s .2s forwards}
+.hero h1{font-family:"Cormorant Garamond",serif;font-weight:500;line-height:.92;font-size:clamp(3.4rem,13vw,11rem);color:var(--ink);letter-spacing:-.01em}
+.hero h1 .it{font-style:italic;color:var(--terra);display:block}
+.hero h1 .l1{opacity:0;animation:rise 1s .35s forwards}
+.hero h1 .l2{opacity:0;animation:rise 1s .55s forwards}
+.hero-sub{margin-top:30px;font-family:"Noto Serif TC",serif;font-size:clamp(1.05rem,2.4vw,1.45rem);color:var(--ink-soft);font-weight:400;max-width:660px;opacity:0;animation:fade 1s .9s forwards}
+.hero-meta{margin-top:46px;display:flex;gap:clamp(24px,6vw,60px);flex-wrap:wrap;justify-content:center;opacity:0;animation:fade 1s 1.1s forwards}
+.hero-meta .m{text-align:center}
+.hero-meta .m b{font-family:"Cormorant Garamond",serif;font-size:2.6rem;font-weight:600;color:var(--teal);display:block;line-height:1}
+.hero-meta .m small{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+.scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);opacity:0;animation:fade 1s 1.4s forwards}
+.scroll-cue::after{content:"";display:block;width:1px;height:34px;background:var(--ink-soft);margin:10px auto 0;animation:cue 1.8s infinite}
+@keyframes cue{0%,100%{transform:scaleY(.3);opacity:.3;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
+@keyframes fade{to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION */
+section{position:relative;z-index:2;padding:clamp(64px,9vw,130px) clamp(20px,6vw,90px)}
+.wrap{max-width:1160px;margin:0 auto}
+.sec-head{display:flex;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.sec-head .tag{font-family:"Cormorant Garamond",serif;font-size:1rem;font-weight:600;letter-spacing:.2em;color:var(--terra);text-transform:uppercase;border-bottom:2px solid var(--terra);padding-bottom:4px}
+.sec-head h2{font-family:"Noto Serif TC",serif;font-weight:700;font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.1;color:var(--ink)}
+.sec-head h2 em{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--teal);font-weight:500}
+.legend{font-family:"Noto Serif TC",serif;font-size:.86rem;color:var(--ink-soft);font-style:italic;margin-top:26px;padding-left:14px;border-left:3px solid var(--ochre)}
+
+/* ROUTE */
+#route{background:linear-gradient(180deg,transparent,rgba(236,224,201,.6),transparent)}
+.route-grid{display:grid;grid-template-columns:minmax(280px,1fr) 1.2fr;gap:clamp(30px,5vw,70px);align-items:center}
+@media(max-width:820px){.route-grid{grid-template-columns:1fr}}
+.route-map{display:flex;justify-content:center}
+.route-map svg{width:100%;max-width:420px;height:auto;filter:drop-shadow(0 14px 30px var(--shadow))}
+.route-item{display:flex;align-items:center;gap:18px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.route-item:last-child{border-bottom:none}
+.route-item .num{font-family:"Cormorant Garamond",serif;font-size:1.7rem;font-weight:600;color:var(--terra);width:38px;flex:none}
+.route-item .city{font-family:"Noto Serif TC",serif;font-size:1.16rem;font-weight:600}
+.route-item .city .ital{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:.92rem;color:var(--ink-soft);font-weight:400;letter-spacing:.03em}
+.route-item .days{margin-left:auto;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:rgba(29,91,94,.1);padding:5px 12px;border-radius:18px;white-space:nowrap}
+
+/* CITY */
+.city{position:relative;padding-top:40px}
+.city + .city{margin-top:clamp(40px,7vw,90px)}
+.city-head{position:relative;margin-bottom:40px}
+.city-bignum{position:absolute;top:-46px;right:0;font-family:"Cormorant Garamond",serif;font-size:clamp(7rem,20vw,16rem);font-weight:600;line-height:.8;color:rgba(168,65,42,.08);z-index:-1;pointer-events:none}
+.city-name{font-family:"Cormorant Garamond",serif;font-size:clamp(2.4rem,7vw,5rem);font-weight:500;font-style:italic;color:var(--terra);line-height:1}
+.city-zh{font-family:"Noto Serif TC",serif;font-size:clamp(1.4rem,3.2vw,2.1rem);font-weight:700;margin-top:2px}
+.city-meta{display:flex;gap:18px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.city-meta .pill{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;background:var(--teal);color:var(--paper);padding:5px 14px;border-radius:20px;font-weight:400}
+.city-meta .pill.alt{background:transparent;color:var(--teal);border:1px solid var(--teal)}
+.city-intro{font-family:"Noto Serif TC",serif;font-size:1.08rem;color:var(--ink-soft);max-width:780px;margin-top:18px;line-height:1.9}
+
+.days-list{margin:34px 0;border-left:2px solid var(--line)}
+.day{position:relative;padding:14px 0 14px 34px}
+.day::before{content:"";position:absolute;left:-7px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--terra)}
+.day .dnum{font-family:"Cormorant Garamond",serif;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.day .dtitle{font-family:"Noto Serif TC",serif;font-weight:600;font-size:1.06rem;margin:1px 0 4px}
+.day .ddesc{font-size:.95rem;color:var(--ink-soft)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:14px}
+.card{background:linear-gradient(160deg,#fbf4e6,#f1e5cd);border:1px solid var(--line);border-radius:4px;padding:26px 24px;box-shadow:0 18px 40px -30px var(--shadow);transition:transform .35s,box-shadow .35s}
+.card:hover{transform:translateY(-5px);box-shadow:0 26px 50px -28px var(--shadow)}
+.card h4{display:flex;align-items:center;gap:10px;font-family:"Noto Serif TC",serif;font-size:1.12rem;font-weight:700;margin-bottom:16px;color:var(--ink)}
+.card h4 .ic{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:.95rem;flex:none}
+.card.sights h4 .ic{background:var(--terra);color:var(--paper)}
+.card.food h4 .ic{background:var(--ochre);color:var(--ink)}
+.card.tips h4 .ic{background:var(--teal);color:var(--paper)}
+.card ul{list-style:none}
+.card li{position:relative;padding:7px 0 7px 18px;font-size:.94rem;border-bottom:1px dotted rgba(168,65,42,.18)}
+.card li:last-child{border-bottom:none}
+.card li::before{content:"";position:absolute;left:0;top:16px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.card li b{font-weight:700;color:var(--terra-deep)}
+.card.food li b{color:var(--gold)}
+.card.tips li b{color:var(--teal-deep)}
+.card li .it{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--ink-soft);font-size:.9rem}
+.opt{font-size:.74rem;color:#9a7b52;font-style:normal;background:rgba(199,146,55,.16);padding:1px 7px;border-radius:10px;margin-left:4px;white-space:nowrap}
+
+/* NOTES */
+#notes{background:var(--teal-deep);color:var(--paper);z-index:2}
+#notes::before{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 20h40M20 0v40' stroke='%23f3e9d8' stroke-width='.5'/%3E%3C/svg%3E")}
+#notes .sec-head .tag{color:var(--ochre);border-color:var(--ochre)}
+#notes .sec-head h2{color:var(--paper)}
+#notes .sec-head h2 em{color:var(--ochre)}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.note{position:relative;padding:4px 0}
+.note .nnum{font-family:"Cormorant Garamond",serif;font-size:2rem;font-weight:600;color:var(--ochre);line-height:1}
+.note h4{font-family:"Noto Serif TC",serif;font-size:1.14rem;font-weight:700;margin:6px 0 10px;color:var(--paper)}
+.note p{font-size:.92rem;color:rgba(243,233,216,.82);font-weight:300}
+.note p b{color:var(--ochre);font-weight:500}
+
+.budget{margin-top:50px;border-top:1px solid rgba(243,233,216,.25);padding-top:36px}
+.budget h3{font-family:"Noto Serif TC",serif;font-size:1.3rem;color:var(--paper);margin-bottom:6px}
+.budget .sub{font-size:.85rem;color:rgba(243,233,216,.6);margin-bottom:22px}
+.budget-rows{display:flex;flex-direction:column;gap:2px}
+.brow{display:grid;grid-template-columns:1.4fr 1fr auto;gap:14px;align-items:center;padding:13px 4px;border-bottom:1px solid rgba(243,233,216,.12);font-size:.92rem}
+.brow .bcat{font-family:"Noto Serif TC",serif;font-weight:500}
+.brow .bnote{color:rgba(243,233,216,.6);font-size:.84rem}
+.brow .bnum{font-family:"Cormorant Garamond",serif;font-size:1.25rem;color:var(--ochre);font-weight:600;white-space:nowrap;text-align:right}
+.brow.tot{border-bottom:none;border-top:2px solid var(--ochre);margin-top:8px;padding-top:16px}
+.brow.tot .bcat{font-weight:700;color:var(--ochre)}
+.brow.tot .bnum{font-size:1.6rem}
+@media(max-width:560px){.brow{grid-template-columns:1fr auto}.brow .bnote{display:none}}
+
+footer{position:relative;z-index:2;text-align:center;padding:80px 24px 60px;background:var(--paper)}
+footer .ar{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(1.8rem,5vw,3rem);color:var(--terra);font-weight:500}
+footer .fz{font-family:"Noto Serif TC",serif;color:var(--ink-soft);margin-top:8px}
+footer .fmeta{margin-top:26px;font-size:.78rem;letter-spacing:.1em;color:var(--ink-soft);max-width:620px;margin-inline:auto;line-height:1.8}
+footer .tri{margin:30px auto 0;width:60px;height:1px;background:var(--line);position:relative}
+footer .tri::after{content:"❖";position:absolute;top:-12px;left:50%;transform:translateX(-50%);color:var(--ochre);background:var(--paper);padding:0 8px}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">Viaggio in <span>Italia</span></div>
+  <div class="nav-links">
+    <a href="#route">路線</a>
+    <a href="#venezia">威尼斯</a>
+    <a href="#bari">巴里</a>
+    <a href="#napoli">那不勒斯</a>
+    <a href="#roma">羅馬</a>
+    <a href="#toscana">托斯卡尼</a>
+    <a href="#firenze">佛羅倫斯</a>
+    <a href="#milano">米蘭</a>
+    <a href="#notes">注意事項</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-kicker">Ventuno Giorni · 二十一天的義大利</div>
+  <h1 class="disp">
+    <span class="l1">VIAGGIO</span>
+    <span class="it l2">in Italia</span>
+  </h1>
+  <p class="hero-sub serif">從水都威尼斯啟程,一路南下普利亞的錐頂石屋與石窟古城,沿著火山與海岸折返中部,最後在文藝復興與時尚之都間畫下句點——一趟由北至南、再北上的縱貫義大利之旅。</p>
+  <div class="hero-meta">
+    <div class="m"><b>21</b><small>Giorni 天數</small></div>
+    <div class="m"><b>7</b><small>Tappe 據點</small></div>
+    <div class="m"><b>9</b><small>UNESCO 世遺</small></div>
+  </div>
+  <div class="scroll-cue">向下捲動</div>
+</header>
+
+<!-- ROUTE -->
+<section id="route">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="tag">Itinerario</span>
+      <h2 class="serif">行程路線 <em>il percorso</em></h2>
+    </div>
+    <div class="route-grid">
+      <div class="route-map">
+        <svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg" aria-label="義大利路線圖">
+          <path id="rline" d="M255 110 L300 425 L205 410 L185 330 L165 295 L150 270 L95 80"
+                fill="none" stroke="#a8412a" stroke-width="2.4" stroke-dasharray="5 7" stroke-linecap="round"/>
+          <g font-family="'Cormorant Garamond',serif">
+            <g><circle cx="255" cy="110" r="9" fill="#1d5b5e"/><text x="255" y="114.5" text-anchor="middle" fill="#f3e9d8" font-size="11" font-weight="600">1</text><text x="272" y="114" fill="#2a2018" font-size="14" font-style="italic">Venezia</text></g>
+            <g><circle cx="300" cy="425" r="9" fill="#a8412a"/><text x="300" y="429.5" text-anchor="middle" fill="#f3e9d8" font-size="11" font-weight="600">2</text><text x="300" y="448" text-anchor="middle" fill="#2a2018" font-size="14" font-style="italic">Bari</text></g>
+            <g><circle cx="205" cy="410" r="9" fill="#a8412a"/><text x="205" y="414.5" text-anchor="middle" fill="#f3e9d8" font-size="11" font-weight="600">3</text><text x="188" y="414" text-anchor="end" fill="#2a2018" font-size="14" font-style="italic">Napoli</text></g>
+            <g><circle cx="185" cy="330" r="9" fill="#a8412a"/><text x="185" y="334.5" text-anchor="middle" fill="#f3e9d8" font-size="11" font-weight="600">4</text><text x="202" y="334" fill="#2a2018" font-size="14" font-style="italic">Roma</text></g>
+            <g><circle cx="165" cy="295" r="9" fill="#a8412a"/><text x="165" y="299.5" text-anchor="middle" fill="#f3e9d8" font-size="11" font-weight="600">5</text><text x="148" y="290" text-anchor="end" fill="#2a2018" font-size="13" font-style="italic">Toscana</text></g>
+            <g><circle cx="150" cy="270" r="9" fill="#a8412a"/><text x="150" y="274.5" text-anchor="middle" fill="#f3e9d8" font-size="11" font-weight="600">6</text><text x="133" y="262" text-anchor="end" fill="#2a2018" font-size="13" font-style="italic">Firenze</text></g>
+            <g><circle cx="95" cy="80" r="9" fill="#1d5b5e"/><text x="95" y="84.5" text-anchor="middle" fill="#f3e9d8" font-size="11" font-weight="600">7</text><text x="80" y="68" text-anchor="end" fill="#2a2018" font-size="14" font-style="italic">Milano</text></g>
+          </g>
+        </svg>
+      </div>
+      <div class="route-list">
+        <div class="route-item"><span class="num disp">01</span><span class="city">威尼斯<span class="ital">Venezia · 水都 (起點)</span></span><span class="days">Day 1–3</span></div>
+        <div class="route-item"><span class="num disp">02</span><span class="city">巴里 · 普利亞<span class="ital">Bari · 含 Alberobello、馬泰拉</span></span><span class="days">Day 4–7</span></div>
+        <div class="route-item"><span class="num disp">03</span><span class="city">那不勒斯<span class="ital">Napoli · 火山與披薩</span></span><span class="days">Day 8–9</span></div>
+        <div class="route-item"><span class="num disp">04</span><span class="city">羅馬<span class="ital">Roma · 永恆之城</span></span><span class="days">Day 10–13</span></div>
+        <div class="route-item"><span class="num disp">05</span><span class="city">托斯卡尼<span class="ital">Toscana · 田園酒鄉</span></span><span class="days">Day 14–16</span></div>
+        <div class="route-item"><span class="num disp">06</span><span class="city">佛羅倫斯<span class="ital">Firenze · 文藝復興</span></span><span class="days">Day 17–19</span></div>
+        <div class="route-item"><span class="num disp">07</span><span class="city">米蘭<span class="ital">Milano · 終點離境</span></span><span class="days">Day 20–21</span></div>
+      </div>
+    </div>
+    <p class="legend">標示 <span class="opt">?</span> 的景點為機動行程,當時間或體力不足時可彈性略過。</p>
+  </div>
+</section>
+
+<!-- CITIES -->
+<section id="cities">
+  <div class="wrap">
+
+    <!-- ============ VENEZIA ============ -->
+    <div class="city reveal" id="venezia">
+      <div class="city-head">
+        <div class="city-bignum disp">01</div>
+        <div class="city-name disp">Venezia</div>
+        <div class="city-zh serif">威尼斯</div>
+        <div class="city-meta">
+          <span class="pill">Day 1–3 · 三晚</span>
+          <span class="pill alt">起點 · 水都 · 離島</span>
+        </div>
+        <p class="city-intro">旅程的起點。多數航班可由威尼斯馬可波羅機場進入。這座沒有汽車的迷宮城市,最好的玩法就是「迷路」。除了聖馬可的盛大,別錯過彩色島與玻璃島的午後,以及躲進小酒館 (bacaro) 嚐 cicchetti 的悠閒。</p>
+      </div>
+      <div class="days-list">
+        <div class="day"><div class="dnum">Day 1</div><div class="dtitle">抵達 · 本島核心</div><div class="ddesc">入住後輕鬆漫步:聖馬可廣場、聖馬可大教堂、總督宮與嘆息橋,傍晚在里阿爾托橋畔看夕陽,運河旁喝一杯發源於此的 Spritz。</div></div>
+        <div class="day"><div class="dnum">Day 2</div><div class="dtitle">離島一日</div><div class="ddesc">搭水上巴士前往彩色漁村 Burano、玻璃工藝島 Murano,時間夠可加碼古老的 Torcello。</div></div>
+        <div class="day"><div class="dnum">Day 3</div><div class="dtitle">藝術 & 巷弄</div><div class="ddesc">佩姬古根漢美術館或學院美術館,午後在 Dorsoduro 區巷弄漫步,可選擇體驗一段貢多拉,晚上準備隔日南飛普利亞。</div></div>
+      </div>
+      <div class="cards">
+        <div class="card sights"><h4><span class="ic">A</span>必訪景點</h4><ul>
+          <li><b>聖馬可廣場與大教堂</b> <span class="it">Piazza San Marco</span></li>
+          <li><b>總督宮 & 嘆息橋</b> <span class="it">Palazzo Ducale</span></li>
+          <li><b>里阿爾托橋</b> Rialto｜旁有熱鬧市場</li>
+          <li><b>彩色島 Burano</b> & <b>玻璃島 Murano</b></li>
+          <li><b>佩姬古根漢美術館</b>｜現代藝術收藏</li>
+        </ul></div>
+        <div class="card food"><h4><span class="ic">B</span>在地美食</h4><ul>
+          <li><b>Cicchetti</b>｜小酒館式的威尼斯小點</li>
+          <li><b>墨魚燉飯 / 墨魚麵</b> <span class="it">al nero di seppia</span></li>
+          <li><b>Sarde in saor</b>｜糖醋沙丁魚</li>
+          <li><b>Spritz</b>｜在這裡發源的開胃酒</li>
+        </ul></div>
+        <div class="card tips"><h4><span class="ic">C</span>實用提醒</h4><ul>
+          <li>旺季部分日子徵<b>入城日票</b>,當日往返者須先上網登記</li>
+          <li>水上巴士 Vaporetto 建議買 1–3 日通票較划算</li>
+          <li>住宿與餐飲偏貴,廣場周邊餐廳留意 coperto</li>
+          <li>行李拖行石板與橋梯辛苦,輕裝為宜</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- ============ BARI / PUGLIA ============ -->
+    <div class="city reveal" id="bari">
+      <div class="city-head">
+        <div class="city-bignum disp">02</div>
+        <div class="city-name disp">Bari &amp; Puglia</div>
+        <div class="city-zh serif">巴里 · 普利亞</div>
+        <div class="city-meta">
+          <span class="pill">Day 4–7 · 四晚</span>
+          <span class="pill alt">石屋 · 石窟 · 海港</span>
+        </div>
+        <p class="city-intro">由威尼斯飛往「義大利的鞋跟」普利亞大區 (約 1.5 小時)。以巴里為基地,探索錐頂石屋之鄉 Alberobello、鄰近的石窟世遺馬泰拉,與懸崖上的白色海港 Polignano a Mare。南義的陽光、白牆與慢步調,是全程最放鬆的一段。</p>
+      </div>
+      <div class="days-list">
+        <div class="day"><div class="dnum">Day 4</div><div class="dtitle">南飛 + 巴里老城</div><div class="ddesc">由威尼斯飛抵巴里,午後漫遊巴里老城 Bari Vecchia、聖尼可拉聖殿與海濱步道,看當地婆婆在巷口手工製作貓耳朵麵 (orecchiette)。</div></div>
+        <div class="day"><div class="dnum">Day 5</div><div class="dtitle">Alberobello 錐頂石屋</div><div class="ddesc">一日遊世遺小鎮 Alberobello,漫步 Rione Monti 與 Aia Piccola 兩區成片的 trulli 石屋,午餐嚐普利亞名菜 bombette 肉捲。</div></div>
+        <div class="day"><div class="dnum">Day 6</div><div class="dtitle">馬泰拉 Matera</div><div class="ddesc">前往岩壁中的石窟古城 (距巴里約 1 小時):Sassi 石窟區、岩洞教堂、石窟民居博物館,傍晚於觀景台俯瞰岩城夜景。</div></div>
+        <div class="day"><div class="dnum">Day 7</div><div class="dtitle">Polignano a Mare <span class="opt">?</span></div><div class="ddesc">懸崖上的海港小鎮、Lama Monachile 海蝕灣與海蝕洞;時間不足可略,或改加碼白城 Ostuni。傍晚返巴里,準備西移那不勒斯。</div></div>
+      </div>
+      <div class="cards">
+        <div class="card sights"><h4><span class="ic">A</span>必訪景點</h4><ul>
+          <li><b>Alberobello</b>｜錐頂石屋 trulli (世遺)</li>
+          <li><b>馬泰拉 Matera</b>｜石窟古城世遺,距巴里約 1 小時</li>
+          <li><b>巴里老城</b> Bari Vecchia｜聖尼可拉聖殿、手工麵巷</li>
+          <li><b>Polignano a Mare</b>｜懸崖海港 <span class="opt">時間不足可略</span></li>
+          <li><b>Ostuni / Locorotondo</b>｜白城與小鎮 <span class="opt">機動</span></li>
+        </ul></div>
+        <div class="card food"><h4><span class="ic">B</span>在地美食</h4><ul>
+          <li><b>貓耳朵麵</b> <span class="it">Orecchiette</span>｜配蕪菁葉</li>
+          <li><b>Burrata</b>｜普利亞產的奶香起司</li>
+          <li><b>Focaccia barese</b>｜番茄橄欖佛卡夏</li>
+          <li><b>馬泰拉麵包</b> <span class="it">Pane di Matera</span> (在馬泰拉)</li>
+          <li><b>Taralli</b>｜下酒圈餅 & 新鮮海產</li>
+        </ul></div>
+        <div class="card tips"><h4><span class="ic">C</span>實用提醒</h4><ul>
+          <li>威尼斯→巴里建議<b>搭機</b> (約 1.5h),陸路過遠</li>
+          <li>普利亞與馬泰拉景點分散,<b>租車或包車</b>最方便</li>
+          <li>馬泰拉與石屋小鎮石階多,穿好走的鞋</li>
+          <li>南義午後常午休,行程別排太滿</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- ============ NAPOLI ============ -->
+    <div class="city reveal" id="napoli">
+      <div class="city-head">
+        <div class="city-bignum disp">03</div>
+        <div class="city-name disp">Napoli</div>
+        <div class="city-zh serif">那不勒斯</div>
+        <div class="city-meta">
+          <span class="pill">Day 8–9 · 兩晚</span>
+          <span class="pill alt">披薩 · 龐貝 · 海岸</span>
+        </div>
+        <p class="city-intro">由巴里東西橫越半島抵達披薩的故鄉 (火車或自駕約 3–4 小時)。停留兩晚,把握時間吃遍正宗拿坡里披薩,並走訪被維蘇威火山凝固的龐貝古城。停留較短,龐貝與阿瑪菲海岸建議擇一深入。</p>
+      </div>
+      <div class="days-list">
+        <div class="day"><div class="dnum">Day 8</div><div class="dtitle">移動 + 那不勒斯老城</div><div class="ddesc">抵達後逛 Spaccanapoli 老街、國立考古博物館 (龐貝出土文物),晚上品嚐正宗瑪格麗特披薩。</div></div>
+        <div class="day"><div class="dnum">Day 9</div><div class="dtitle">龐貝古城 + 阿瑪菲海岸 <span class="opt">?</span></div><div class="ddesc">上午龐貝考古遺址 (建議導覽);時間與體力充足者,午後可延伸阿瑪菲海岸 (波西塔諾 / 阿瑪菲) 或卡布里島,否則加碼維蘇威火山。</div></div>
+      </div>
+      <div class="cards">
+        <div class="card sights"><h4><span class="ic">A</span>必訪景點</h4><ul>
+          <li><b>龐貝古城</b> Pompei｜被火山掩埋的羅馬城</li>
+          <li><b>國立考古博物館</b>｜龐貝壁畫與馬賽克精華</li>
+          <li><b>Spaccanapoli</b>｜一線貫穿的老城主街</li>
+          <li><b>阿瑪菲海岸</b>｜波西塔諾 · 阿瑪菲 <span class="opt">時間不足可略</span></li>
+          <li><b>維蘇威火山 / 卡布里島</b> <span class="opt">機動</span></li>
+        </ul></div>
+        <div class="card food"><h4><span class="ic">B</span>在地美食</h4><ul>
+          <li><b>拿坡里披薩</b>｜瑪格麗特的故鄉 <span class="it">Pizza Napoletana</span></li>
+          <li><b>Sfogliatella</b>｜層層酥皮貝殼點心</li>
+          <li><b>水牛莫札瑞拉</b> <span class="it">Mozzarella di bufala</span></li>
+          <li><b>Babà</b> 蘭姆酒蛋糕 & 濃縮咖啡文化</li>
+        </ul></div>
+        <div class="card tips"><h4><span class="ic">C</span>實用提醒</h4><ul>
+          <li>巴里→那不勒斯火車 / 自駕約 <b>3–4 小時</b></li>
+          <li>市區與車站留意<b>扒手</b>,貴重物品收好</li>
+          <li>名店披薩 (如 Da Michele、Sorbillo) 需排隊</li>
+          <li>僅兩天,龐貝與阿瑪菲建議擇一深入</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- ============ ROMA ============ -->
+    <div class="city reveal" id="roma">
+      <div class="city-head">
+        <div class="city-bignum disp">04</div>
+        <div class="city-name disp">Roma</div>
+        <div class="city-zh serif">羅馬</div>
+        <div class="city-meta">
+          <span class="pill">Day 10–13 · 四晚</span>
+          <span class="pill alt">古蹟 · 梵蒂岡 · 永恆之城</span>
+        </div>
+        <p class="city-intro">那不勒斯搭高鐵北上僅約 1 小時。三千年的歷史層疊在每一條街上,四個整天剛好能從容走過古羅馬、巴洛克噴泉,與獨立於城中的梵蒂岡。記得幾乎所有熱門景點都該提前線上預約。</p>
+      </div>
+      <div class="days-list">
+        <div class="day"><div class="dnum">Day 10</div><div class="dtitle">移動 + 古羅馬</div><div class="ddesc">高鐵抵羅馬,午後競技場、古羅馬廣場與帕拉提諾之丘 (聯票),感受帝國餘暉;傍晚威尼斯廣場與祖國祭壇。</div></div>
+        <div class="day"><div class="dnum">Day 11</div><div class="dtitle">巴洛克市心</div><div class="ddesc">萬神殿、特雷維許願池、西班牙階梯、納沃納廣場,穿梭巷弄與廣場,沿途吃 gelato 與 supplì。</div></div>
+        <div class="day"><div class="dnum">Day 12</div><div class="dtitle">梵蒂岡</div><div class="ddesc">梵蒂岡博物館與西斯汀禮拜堂、聖彼得大教堂 (可登穹頂)。注意服裝規定:遮肩蓋膝。</div></div>
+        <div class="day"><div class="dnum">Day 13</div><div class="dtitle">悠閒一日</div><div class="ddesc">波各賽美術館 (需預約)、真理之口,午後到河對岸的 Trastevere 區享受最有生活感的羅馬。</div></div>
+      </div>
+      <div class="cards">
+        <div class="card sights"><h4><span class="ic">A</span>必訪景點</h4><ul>
+          <li><b>競技場 + 古羅馬廣場</b> <span class="it">Colosseo · Foro Romano</span></li>
+          <li><b>萬神殿</b> Pantheon｜保存最完整的古建築</li>
+          <li><b>特雷維噴泉</b>｜背向投幣許願</li>
+          <li><b>梵蒂岡</b>｜博物館 · 西斯汀 · 聖彼得大教堂</li>
+          <li><b>波各賽美術館</b>｜貝尼尼雕塑 (限時預約)</li>
+        </ul></div>
+        <div class="card food"><h4><span class="ic">B</span>在地美食</h4><ul>
+          <li><b>Carbonara · Cacio e pepe · Amatriciana</b> 三大羅馬麵</li>
+          <li><b>烤朝鮮薊</b> <span class="it">Carciofi alla giudia</span></li>
+          <li><b>Supplì</b>｜炸飯球 & Gelato 義式冰淇淋</li>
+          <li><b>Saltimbocca</b>｜火腿鼠尾草小牛肉</li>
+        </ul></div>
+        <div class="card tips"><h4><span class="ic">C</span>實用提醒</h4><ul>
+          <li>競技場、梵蒂岡、波各賽務必<b>提前網路預約</b></li>
+          <li>教堂與聖彼得有<b>服裝規定</b>,備薄外套或圍巾</li>
+          <li>觀光區與地鐵防扒手、慎防「簽名 / 手環」搭訕</li>
+          <li>夏季正午酷熱,善用城中免費飲水點 nasoni</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- ============ TOSCANA ============ -->
+    <div class="city reveal" id="toscana">
+      <div class="city-head">
+        <div class="city-bignum disp">05</div>
+        <div class="city-name disp">Toscana</div>
+        <div class="city-zh serif">托斯卡尼</div>
+        <div class="city-meta">
+          <span class="pill">Day 14–16 · 三晚</span>
+          <span class="pill alt">田園 · 酒鄉 · 溫泉</span>
+        </div>
+        <p class="city-intro">羅馬高鐵北上後租車進入托斯卡尼。連綿的柏樹丘陵、葡萄園與中世紀山城,是明信片裡最經典的義大利,還可順訪 Maremma 的天然溫泉瀑布。建議住一晚鄉村農莊 (agriturismo),配一杯 Chianti 看日落。</p>
+      </div>
+      <div class="days-list">
+        <div class="day"><div class="dnum">Day 14</div><div class="dtitle">西恩納 + 聖吉米尼亞諾</div><div class="ddesc">Siena 古城與貝殼形主廣場 Piazza del Campo、條紋大教堂,午後前往塔樓林立的 San Gimignano 聖吉米尼亞諾。</div></div>
+        <div class="day"><div class="dnum">Day 15</div><div class="dtitle">奧爾恰谷 + 溫泉瀑布 <span class="opt">?</span></div><div class="ddesc">Val d'Orcia 經典丘陵、Pienza、Montepulciano 品酒;體力時間許可,南下 Saturnia 的天然溫泉瀑布 Cascate del Mulino 泡免費野溪溫泉。</div></div>
+        <div class="day"><div class="dnum">Day 16</div><div class="dtitle">Chianti 酒鄉 / 比薩 <span class="opt">?</span></div><div class="ddesc">奇揚地 (Chianti) 葡萄酒莊品酒,或西行順遊比薩斜塔,傍晚移動至佛羅倫斯。</div></div>
+      </div>
+      <div class="cards">
+        <div class="card sights"><h4><span class="ic">A</span>必訪景點</h4><ul>
+          <li><b>西恩納</b> Siena｜扇形廣場與條紋大教堂</li>
+          <li><b>聖吉米尼亞諾</b> San Gimignano｜塔樓之城</li>
+          <li><b>奧爾恰谷</b> Val d'Orcia｜經典托斯卡尼丘陵 (世遺)</li>
+          <li><b>Cascate del Mulino</b>｜Saturnia 溫泉瀑布 <span class="opt">時間不足可略</span></li>
+          <li><b>Chianti 酒區 / 比薩斜塔</b> <span class="opt">機動</span></li>
+        </ul></div>
+        <div class="card food"><h4><span class="ic">B</span>在地美食</h4><ul>
+          <li><b>Chianti / Brunello</b> 等托斯卡尼名酒</li>
+          <li><b>Pici</b>｜手工粗麵,常配野豬肉醬</li>
+          <li><b>Pecorino</b> 羊起司 & 初榨橄欖油</li>
+          <li><b>Ribollita</b>｜托斯卡尼蔬菜麵包濃湯</li>
+        </ul></div>
+        <div class="card tips"><h4><span class="ic">C</span>實用提醒</h4><ul>
+          <li><b>自駕</b>最自由,但小鎮多有 ZTL 管制區,勿誤入</li>
+          <li>Saturnia 溫泉在偏南的 Maremma,距西恩納約 1.5–2h 車程</li>
+          <li>溫泉瀑布為<b>免費野溪</b>,備泳衣、毛巾與防滑鞋</li>
+          <li>酒莊品酒建議事先預約,飲酒不開車</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- ============ FIRENZE ============ -->
+    <div class="city reveal" id="firenze">
+      <div class="city-head">
+        <div class="city-bignum disp">06</div>
+        <div class="city-name disp">Firenze</div>
+        <div class="city-zh serif">佛羅倫斯</div>
+        <div class="city-meta">
+          <span class="pill">Day 17–19 · 三晚</span>
+          <span class="pill alt">文藝復興 · 美術館 · 老橋</span>
+        </div>
+        <p class="city-intro">文藝復興的搖籃,整座老城就是一座露天博物館。布魯內萊斯基的紅色大圓頂、烏菲茲的曠世名作、米開朗基羅的大衛——藝術愛好者會在這裡捨不得離開。</p>
+      </div>
+      <div class="days-list">
+        <div class="day"><div class="dnum">Day 17</div><div class="dtitle">大教堂與圓頂</div><div class="ddesc">聖母百花大教堂、喬托鐘樓與洗禮堂,登布魯內萊斯基圓頂俯瞰紅瓦古城 (須預約)。傍晚老橋 Ponte Vecchio。</div></div>
+        <div class="day"><div class="dnum">Day 18</div><div class="dtitle">美術館日</div><div class="ddesc">烏菲茲美術館 (波提且利《維納斯的誕生》)、學院美術館 (大衛像) —— 兩館都<b>務必預約</b>。</div></div>
+        <div class="day"><div class="dnum">Day 19</div><div class="dtitle">河對岸 & 夕陽</div><div class="ddesc">碧提宮與波波里花園、聖十字聖殿,傍晚登米開朗基羅廣場,看夕陽染紅佛羅倫斯天際線。</div></div>
+      </div>
+      <div class="cards">
+        <div class="card sights"><h4><span class="ic">A</span>必訪景點</h4><ul>
+          <li><b>聖母百花大教堂</b> Duomo｜可登圓頂與鐘樓</li>
+          <li><b>烏菲茲美術館</b> Uffizi｜文藝復興畫作寶庫</li>
+          <li><b>學院美術館</b>｜米開朗基羅《大衛像》</li>
+          <li><b>老橋</b> Ponte Vecchio｜橋上的金飾店</li>
+          <li><b>米開朗基羅廣場</b>｜全城最佳日落點</li>
+        </ul></div>
+        <div class="card food"><h4><span class="ic">B</span>在地美食</h4><ul>
+          <li><b>佛羅倫斯丁骨牛排</b> <span class="it">Bistecca alla Fiorentina</span></li>
+          <li><b>Lampredotto</b>｜在地牛肚包小吃</li>
+          <li><b>Schiacciata</b>｜托斯卡尼香煎扁麵包</li>
+          <li><b>Cantucci + Vin Santo</b>｜杏仁脆餅佐甜酒</li>
+        </ul></div>
+        <div class="card tips"><h4><span class="ic">C</span>實用提醒</h4><ul>
+          <li>烏菲茲 / 學院 / 圓頂皆採<b>限時預約制</b>,提早訂票</li>
+          <li>登圓頂約 463 階且無電梯,需要體力</li>
+          <li>老城同樣有 ZTL 管制,自駕請停城外停車場</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- ============ MILANO (FINALE) ============ -->
+    <div class="city reveal" id="milano">
+      <div class="city-head">
+        <div class="city-bignum disp">07</div>
+        <div class="city-name disp">Milano</div>
+        <div class="city-zh serif">米蘭</div>
+        <div class="city-meta">
+          <span class="pill">Day 20–21 · 兩晚</span>
+          <span class="pill alt">終點 · 時尚 · 大教堂</span>
+        </div>
+        <p class="city-intro">佛羅倫斯搭高鐵北返米蘭僅約 2 小時,為旅程畫下句點。設計與金融之都,適合最後的藝術巡禮與採購,再從 Malpensa / Linate 機場離境。記得若想看達文西《最後的晚餐》,務必提前 1–2 個月預約。</p>
+      </div>
+      <div class="days-list">
+        <div class="day"><div class="dnum">Day 20</div><div class="dtitle">大教堂 · 藝術</div><div class="ddesc">高鐵抵米蘭。登大教堂屋頂近看尖塔群、艾曼紐二世迴廊、史卡拉歌劇院;若已預約則看《最後的晚餐》與布雷拉美術館,午後斯福爾扎城堡。</div></div>
+        <div class="day"><div class="dnum">Day 21</div><div class="dtitle">購物 · 離境</div><div class="ddesc">黃金四角時尚區或機場免稅最後採買,Navigli 運河區午餐,再從米蘭機場結束這趟橫貫南北的義大利之旅。</div></div>
+      </div>
+      <div class="cards">
+        <div class="card sights"><h4><span class="ic">A</span>必訪景點</h4><ul>
+          <li><b>米蘭大教堂</b> Duomo｜可登屋頂近看尖塔</li>
+          <li><b>《最後的晚餐》</b>｜恩寵聖母院,須提前預約</li>
+          <li><b>艾曼紐二世迴廊</b>｜世界最美購物廊</li>
+          <li><b>斯福爾扎城堡</b> & 布雷拉美術館</li>
+          <li><b>垂直森林</b> Bosco Verticale｜當代建築地標</li>
+        </ul></div>
+        <div class="card food"><h4><span class="ic">B</span>在地美食</h4><ul>
+          <li><b>番紅花燉飯</b> <span class="it">Risotto alla Milanese</span></li>
+          <li><b>米蘭炸牛排</b> <span class="it">Cotoletta</span> 與燉牛膝 Ossobuco</li>
+          <li><b>Aperitivo</b>｜傍晚買酒附自助小點的文化</li>
+          <li><b>Panettone</b>｜源自米蘭的圓頂蛋糕</li>
+        </ul></div>
+        <div class="card tips"><h4><span class="ic">C</span>實用提醒</h4><ul>
+          <li>由 Malpensa / Linate 機場離境,預留交通時間</li>
+          <li><b>《最後的晚餐》</b>一票難求,出發前最早處理</li>
+          <li>非歐盟旅客把握離境前的<b>退稅</b>程序</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NOTES -->
+<section id="notes">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="tag">Buono a sapersi</span>
+      <h2 class="serif">旅遊注意事項 <em>note di viaggio</em></h2>
+    </div>
+    <div class="notes-grid">
+      <div class="note"><div class="nnum disp">01</div><h4>最佳季節</h4><p>建議 <b>4–6 月</b> 或 <b>9–10 月</b>,氣候舒適、人潮較緩。7–8 月酷熱擁擠且當地人多在 8 月放假,部分店家歇業。</p></div>
+      <div class="note"><div class="nnum disp">02</div><h4>城際交通</h4><p>威尼斯→巴里建議<b>搭國內線飛機</b> (約 1.5h);巴里→那不勒斯火車或自駕約 3–4h;之後 <b>Trenitalia / Italo 高鐵</b> 串聯羅馬、佛羅倫斯、米蘭。</p></div>
+      <div class="note"><div class="nnum disp">03</div><h4>南義建議租車</h4><p>普利亞、馬泰拉與托斯卡尼景點分散、班次稀疏,<b>租車或包車</b>最有彈性;Saturnia 溫泉與酒莊更幾乎得自駕。</p></div>
+      <div class="note"><div class="nnum disp">04</div><h4>務必預約</h4><p><b>《最後的晚餐》、烏菲茲、競技場、梵蒂岡、波各賽、佛羅倫斯圓頂</b>都採限時 / 限額預約,熱門日期常數週前售罄,出發前先搞定。</p></div>
+      <div class="note"><div class="nnum disp">05</div><h4>治安防扒</h4><p>那不勒斯、羅馬等大城車站、地鐵、觀光區留意<b>扒手與搭訕騙術</b>。貴重物品分開放,背包背前面。</p></div>
+      <div class="note"><div class="nnum disp">06</div><h4>金錢與小費</h4><p>使用<b>歐元</b>,信用卡普及但建議備些現金。餐廳常收<b>桌費 coperto</b>;小費非強制,滿意可留零頭。</p></div>
+      <div class="note"><div class="nnum disp">07</div><h4>用餐文化</h4><p>午餐約 13:00、晚餐 20:00 後才熱鬧;咖啡<b>站著喝最便宜</b>;點水要選氣泡 (gassata) 或無氣 (naturale),通常付費。</p></div>
+      <div class="note"><div class="nnum disp">08</div><h4>服裝與鞋</h4><p>進教堂須<b>遮肩蓋膝</b>,備薄外套或圍巾。全程石板路、石窟與圓頂石階多,一雙好走的鞋是關鍵;採洋蔥式穿搭。</p></div>
+      <div class="note"><div class="nnum disp">09</div><h4>自駕 ZTL</h4><p>歷史城區多設<b>ZTL 交通管制區</b>,誤入會被攝影開罰。自駕請停城外停車場再步行進城,並確認旅館可否申請通行。</p></div>
+      <div class="note"><div class="nnum disp">10</div><h4>住宿稅與入城費</h4><p>各城收取每人每晚的<b>住宿稅</b>,多需現場付。威尼斯旺季特定日對當日往返遊客徵<b>入城費</b>,須事先登記。</p></div>
+      <div class="note"><div class="nnum disp">11</div><h4>通訊與退稅</h4><p>建議備<b>歐洲上網 eSIM</b>,導航訂票都方便。非歐盟旅客單店達門檻可辦<b>退稅</b>,結帳索取退稅單,離境機場海關蓋章。</p></div>
+      <div class="note"><div class="nnum disp">12</div><h4>機動行程</h4><p>標 <b>?</b> 者 (Polignano、阿瑪菲、Cascate del Mulino、比薩等) 為彈性選項;南北跨度大,寧可<b>留白也別硬塞</b>,避免疲於奔命。</p></div>
+    </div>
+
+    <div class="budget reveal">
+      <h3 class="serif">概略預算參考</h3>
+      <p class="sub">以一人 21 天為估算基準,實際依季節、住宿等級與訂票時機浮動,僅供規劃參考。</p>
+      <div class="budget-rows">
+        <div class="brow"><span class="bcat">住宿</span><span class="bnote">中等旅館 / 含石窟旅館與農莊各一晚</span><span class="bnum">€1,900–3,400</span></div>
+        <div class="brow"><span class="bcat">餐飲</span><span class="bnote">混合餐廳與街頭小食</span><span class="bnum">€750–1,300</span></div>
+        <div class="brow"><span class="bcat">城際交通</span><span class="bnote">威尼斯–巴里機票 + 高鐵 + 南義租車</span><span class="bnum">€550–1,000</span></div>
+        <div class="brow"><span class="bcat">門票與導覽</span><span class="bnote">博物館 · 龐貝 · 梵蒂岡等</span><span class="bnum">€300–500</span></div>
+        <div class="brow"><span class="bcat">市內交通與雜支</span><span class="bnote">地鐵 · 水上巴士 · 渡輪 · 小費</span><span class="bnum">€250–450</span></div>
+        <div class="brow tot"><span class="bcat">合計概估</span><span class="bnote"></span><span class="bnum">€3,750–6,650</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ar disp">Buon viaggio!</div>
+  <div class="fz serif">願這趟二十一天的義大利之旅,留下滿滿回憶。</div>
+  <div class="tri"></div>
+  <div class="fmeta">威尼斯 · 巴里 · 那不勒斯 · 羅馬 · 托斯卡尼 · 佛羅倫斯 · 米蘭<br>本行程與資訊供規劃參考,門票預約、交通班次、稅費與入城規定請於出發前再次確認最新公告。</div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+
+const links=[...document.querySelectorAll('.nav-links a')];
+const map={};links.forEach(a=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el)map[id]=a;});
+const spy=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});
+},{rootMargin:'-45% 0px -50% 0px'});
+Object.keys(map).forEach(id=>{const el=document.getElementById(id);if(el)spy.observe(el);});
+
+const rev=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rev.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>rev.observe(el));
+
+const rline=document.getElementById('rline');
+if(rline){const len=rline.getTotalLength();rline.style.strokeDasharray=len;rline.style.strokeDashoffset=len;
+  const ro=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){rline.style.transition='stroke-dashoffset 2.4s ease';rline.style.strokeDashoffset='0';setTimeout(()=>{rline.style.strokeDasharray='5 7';rline.style.strokeDashoffset='0';},2500);ro.disconnect();}});},{threshold:.4});
+  ro.observe(rline.closest('svg'));
+}
+</script>
+</body>
+</html>
