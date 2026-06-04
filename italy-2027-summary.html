@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>義大利 2027 · 彙整單頁版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbf7ee;--ink:#1f1812;--ink2:#5a4d3d;
+  --terra:#a8412a;--terra2:#722a17;
+  --teal:#1d5b5e;--teal2:#0f3b3e;
+  --ochre:#b8893a;--line:#cbb88f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:"Noto Sans TC",sans-serif;
+  background:#e8e2d5;color:var(--ink);
+  line-height:1.5;font-weight:400;font-size:9.2pt;
+  -webkit-font-smoothing:antialiased;
+  padding:24px 12px;
+}
+.disp{font-family:"Cormorant Garamond",serif}
+.serif{font-family:"Noto Serif TC",serif}
+a{color:var(--terra2);text-decoration:underline;text-decoration-color:rgba(168,65,42,.35);text-underline-offset:2px}
+
+/* A4 page */
+.page{
+  width:210mm;min-height:297mm;margin:0 auto 18px;
+  background:var(--paper);padding:13mm 14mm;
+  box-shadow:0 12px 30px -10px rgba(0,0,0,.25);
+  position:relative;
+}
+
+/* HEADER */
+.head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.5px solid var(--terra);padding-bottom:8px;margin-bottom:12px}
+.head .ttl{font-family:"Cormorant Garamond",serif;font-size:22pt;font-weight:600;color:var(--ink);line-height:.95}
+.head .ttl em{font-style:italic;color:var(--terra)}
+.head .zh{font-family:"Noto Serif TC",serif;font-size:10pt;color:var(--ink2);margin-top:3px;font-weight:600}
+.head .meta{text-align:right;font-size:8pt;color:var(--ink2)}
+.head .meta b{font-family:"Cormorant Garamond",serif;font-size:11pt;color:var(--teal);display:block;font-weight:600}
+
+/* SECTION HEAD */
+.sh{font-family:"Cormorant Garamond",serif;font-size:8pt;letter-spacing:.18em;color:var(--terra);text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--terra);padding-bottom:2px;margin:14px 0 8px;display:flex;justify-content:space-between;align-items:baseline}
+.sh .zh{font-family:"Noto Serif TC",serif;font-size:10pt;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:700}
+
+/* CALENDAR */
+.cal{margin-bottom:10px}
+.cal-head{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:3px}
+.cal-head div{font-family:"Noto Serif TC",serif;font-size:7pt;color:var(--ink2);text-align:center;font-weight:600;padding:1px 0}
+.cal-head div:nth-child(6),.cal-head div:nth-child(7){color:var(--terra)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cell{min-height:48px;padding:4px 5px;border:1px solid #ddd;border-radius:2px;background:#fff;display:flex;flex-direction:column;position:relative}
+.cell.empty{background:repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(0,0,0,.04) 4px,rgba(0,0,0,.04) 5px);border-style:dashed;border-color:#ccc}
+.cell .date{font-family:"Cormorant Garamond",serif;font-size:10pt;font-weight:600;line-height:1;color:var(--ink)}
+.cell .date .mo{font-size:6pt;color:var(--ink2);margin-left:2px;font-weight:500;font-style:italic}
+.cell .dn{font-family:"Cormorant Garamond",serif;font-size:6pt;letter-spacing:.06em;color:var(--terra);font-weight:700;margin-top:1px;text-transform:uppercase}
+.cell .act{font-size:6.5pt;font-family:"Noto Serif TC",serif;color:var(--ink);margin-top:auto;line-height:1.3}
+.cell.hl::after{content:"★";position:absolute;top:2px;right:3px;font-size:7pt;color:var(--ochre);font-family:"Cormorant Garamond",serif}
+.c-v{background:#e4ecec;border-color:#a4bdbd}
+.c-v .dn{color:var(--teal2)}
+.c-b{background:#f3e6c8;border-color:#d6b878}
+.c-b .dn{color:#7a5418}
+.c-m{background:#e8dcc8;border-color:#c2a574}
+.c-m .dn{color:#5e3812}
+.c-n{background:#f0d8ce;border-color:#cf9787}
+.c-n .dn{color:var(--terra2)}
+.c-r{background:#ecccc0;border-color:#c88770}
+.c-r .dn{color:#5e2010}
+.c-t{background:#e5e8c8;border-color:#b6bf78}
+.c-t .dn{color:#4e561a}
+.c-f{background:#f0e4c8;border-color:#cdaa68}
+.c-f .dn{color:#704f10}
+.c-mi{background:#dde0e5;border-color:#9aa3b0}
+.c-mi .dn{color:#1f2c3a}
+
+.cal-leg{margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 10px;font-size:6.5pt;color:var(--ink2)}
+.cal-leg span{display:inline-flex;align-items:center;gap:3px}
+.cal-leg .sq{width:8px;height:8px;border-radius:2px;display:inline-block}
+
+/* CITY TABLE */
+.cities{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:6px}
+.cityrow{display:grid;grid-template-columns:115px 1fr;gap:10px;border-left:3px solid var(--terra);padding:5px 0 5px 8px;background:linear-gradient(90deg,rgba(168,65,42,.05),transparent 70%)}
+.cityrow .cl{font-family:"Cormorant Garamond",serif}
+.cityrow .nm{font-size:11.5pt;font-weight:600;font-style:italic;color:var(--terra);line-height:1}
+.cityrow .zh{font-family:"Noto Serif TC",serif;font-size:9pt;font-weight:700;color:var(--ink);margin-top:1px}
+.cityrow .rng{font-size:7pt;color:var(--ink2);margin-top:2px;font-family:"Cormorant Garamond",serif;font-weight:600}
+.cityrow .body{font-size:7.8pt;line-height:1.55}
+.cityrow .body p{margin:1px 0}
+.cityrow .body b{color:var(--ink);font-weight:700}
+.cityrow .lbl{font-family:"Noto Serif TC",serif;font-weight:700;color:var(--teal);font-size:7.2pt;margin-right:4px}
+
+/* PAGE 2 — REMINDERS / HOTELS / BUDGET */
+.flagbox{background:rgba(184,137,58,.12);border-left:3px solid var(--ochre);padding:7px 10px;margin:0 0 8px;font-size:7.8pt;line-height:1.55}
+.flagbox.warn{background:rgba(168,65,42,.1);border-color:var(--terra)}
+.flagbox h4{font-family:"Noto Serif TC",serif;font-size:8.5pt;font-weight:700;color:var(--terra2);margin-bottom:2px}
+.flagbox.warn h4{color:var(--terra2)}
+.flagbox b{color:var(--terra2);font-weight:700}
+
+.notes2{column-count:2;column-gap:14px;font-size:7.8pt;margin-bottom:6px}
+.notes2 .nt{break-inside:avoid;margin-bottom:6px;padding-left:18px;position:relative;line-height:1.55}
+.notes2 .nt .n{font-family:"Cormorant Garamond",serif;font-size:9pt;font-weight:600;color:var(--ochre);position:absolute;left:0;top:0}
+.notes2 .nt h5{font-family:"Noto Serif TC",serif;font-size:8.2pt;font-weight:700;color:var(--ink);margin-bottom:1px}
+.notes2 .nt p{color:var(--ink2)}
+.notes2 .nt p b{color:var(--ink);font-weight:700}
+
+/* HOTELS */
+.hotels{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.hgroup{background:#fff;border:1px solid var(--line);border-radius:3px;padding:8px 10px}
+.hgroup h5{font-family:"Noto Serif TC",serif;font-size:8.2pt;font-weight:700;margin-bottom:4px;color:var(--terra2);display:flex;justify-content:space-between;align-items:baseline}
+.hgroup h5 span{font-size:6.5pt;color:var(--ink2);font-weight:500;font-style:italic;font-family:"Cormorant Garamond",serif}
+.hgroup ul{list-style:none;font-size:7.5pt;line-height:1.55}
+.hgroup li{padding:2px 0 2px 9px;position:relative}
+.hgroup li::before{content:"";position:absolute;left:0;top:9px;width:3px;height:3px;border-radius:50%;background:var(--ochre)}
+.hgroup li b{color:var(--terra2);font-weight:700}
+.hgroup li .desc{color:var(--ink2);font-size:7pt}
+.hgroup a{color:var(--terra2)}
+.hgroup a::after{content:" ↗";font-size:.7em;opacity:.6}
+
+/* BUDGET */
+.budget{background:var(--teal2);color:var(--paper);padding:10px 12px;border-radius:3px;font-size:7.5pt}
+.budget h5{font-family:"Noto Serif TC",serif;font-size:9pt;font-weight:700;margin-bottom:4px;color:var(--paper)}
+.budget .sub{color:rgba(251,247,238,.7);font-size:6.8pt;margin-bottom:5px}
+.budget table{width:100%;border-collapse:collapse}
+.budget td{padding:3px 0;border-bottom:1px solid rgba(251,247,238,.18);vertical-align:top}
+.budget td.cat{font-family:"Noto Serif TC",serif;font-weight:500}
+.budget td.nt{color:rgba(251,247,238,.7);font-size:6.8pt;padding-left:8px}
+.budget td.amt{font-family:"Cormorant Garamond",serif;font-size:8.5pt;color:var(--ochre);font-weight:600;text-align:right;white-space:nowrap}
+.budget tr.tot td{border-bottom:none;border-top:1.5px solid var(--ochre);padding-top:5px}
+.budget tr.tot td.cat{font-weight:700;color:var(--ochre)}
+.budget tr.tot td.amt{font-size:10.5pt}
+
+.foot{margin-top:8px;font-family:"Cormorant Garamond",serif;font-style:italic;text-align:center;color:var(--terra);font-size:9.5pt;padding-top:6px;border-top:1px solid var(--line)}
+.foot small{display:block;font-family:"Noto Sans TC",sans-serif;font-style:normal;font-size:6.5pt;color:var(--ink2);margin-top:3px;letter-spacing:.05em}
+
+/* PRINT */
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff;padding:0}
+  .page{margin:0;box-shadow:none;width:auto;min-height:auto;page-break-after:always}
+  .page:last-child{page-break-after:auto}
+  a{color:var(--terra2) !important;text-decoration:underline}
+  .hgroup a::after{content:""}
+}
+
+/* viewing on narrow screens */
+@media(max-width:760px){
+  body{padding:8px 4px}
+  .page{width:auto;min-height:auto;padding:14px}
+  .cell{min-height:42px}
+  .hotels{grid-template-columns:1fr}
+  .notes2{column-count:1}
+  .cityrow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="head">
+    <div>
+      <div class="ttl disp">Viaggio in <em>Italia</em> · 2027</div>
+      <div class="zh">義大利冬季 21 天 · 行程彙整</div>
+    </div>
+    <div class="meta">
+      <b>2027 / 1 / 28 → 2 / 17</b>
+      21 Giorni · 8 Tappe · 10 UNESCO
+    </div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="sh"><span>Calendario</span><span class="zh">21 天行事曆</span></div>
+  <div class="cal">
+    <div class="cal-head"><div>週一</div><div>週二</div><div>週三</div><div>週四</div><div>週五</div><div>週六</div><div>週日</div></div>
+    <div class="cal-grid">
+      <div class="cell empty"></div>
+      <div class="cell empty"></div>
+      <div class="cell empty"></div>
+      <div class="cell c-v"><div class="date">28<span class="mo">1月</span></div><div class="dn">Day 1</div><div class="act">抵米蘭→威尼斯</div></div>
+      <div class="cell c-v"><div class="date">29</div><div class="dn">Day 2</div><div class="act">威尼斯本島</div></div>
+      <div class="cell c-v hl"><div class="date">30</div><div class="dn">Day 3</div><div class="act">離島+嘉年華開幕</div></div>
+      <div class="cell c-b"><div class="date">31</div><div class="dn">Day 4</div><div class="act">飛巴里+老城</div></div>
+
+      <div class="cell c-b"><div class="date">1<span class="mo">2月</span></div><div class="dn">Day 5</div><div class="act">Alberobello</div></div>
+      <div class="cell c-m"><div class="date">2</div><div class="dn">Day 6</div><div class="act">抵馬泰拉</div></div>
+      <div class="cell c-m"><div class="date">3</div><div class="dn">Day 7</div><div class="act">Sassi 深入</div></div>
+      <div class="cell c-n"><div class="date">4</div><div class="dn">Day 8</div><div class="act">抵那不勒斯</div></div>
+      <div class="cell c-n"><div class="date">5</div><div class="dn">Day 9</div><div class="act">龐貝+博物館</div></div>
+      <div class="cell c-r"><div class="date">6</div><div class="dn">Day 10</div><div class="act">抵羅馬+競技場</div></div>
+      <div class="cell c-r"><div class="date">7</div><div class="dn">Day 11</div><div class="act">巴洛克+波各賽<br>(梵蒂岡休)</div></div>
+
+      <div class="cell c-r"><div class="date">8</div><div class="dn">Day 12</div><div class="act">梵蒂岡完整日</div></div>
+      <div class="cell c-r"><div class="date">9</div><div class="dn">Day 13</div><div class="act">羅馬尾聲</div></div>
+      <div class="cell c-t"><div class="date">10</div><div class="dn">Day 14</div><div class="act">羅馬→西恩納</div></div>
+      <div class="cell c-t"><div class="date">11</div><div class="dn">Day 15</div><div class="act">San Gimignano</div></div>
+      <div class="cell c-f"><div class="date">12</div><div class="dn">Day 16</div><div class="act">Chianti→佛羅倫斯</div></div>
+      <div class="cell c-f"><div class="date">13</div><div class="dn">Day 17</div><div class="act">烏菲茲+學院</div></div>
+      <div class="cell c-f hl"><div class="date">14</div><div class="dn">Day 18</div><div class="act">Duomo+情人節</div></div>
+
+      <div class="cell c-mi"><div class="date">15</div><div class="dn">Day 19</div><div class="act">→ 米蘭 (休館日)</div></div>
+      <div class="cell c-mi hl"><div class="date">16</div><div class="dn">Day 20</div><div class="act">最後的晚餐</div></div>
+      <div class="cell c-mi"><div class="date">17</div><div class="dn">Day 21</div><div class="act">11:00 離境 ✈</div></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+    </div>
+    <div class="cal-leg">
+      <span><i class="sq" style="background:#e4ecec;border:1px solid #a4bdbd"></i>威尼斯</span>
+      <span><i class="sq" style="background:#f3e6c8;border:1px solid #d6b878"></i>巴里</span>
+      <span><i class="sq" style="background:#e8dcc8;border:1px solid #c2a574"></i>馬泰拉</span>
+      <span><i class="sq" style="background:#f0d8ce;border:1px solid #cf9787"></i>那不勒斯</span>
+      <span><i class="sq" style="background:#ecccc0;border:1px solid #c88770"></i>羅馬</span>
+      <span><i class="sq" style="background:#e5e8c8;border:1px solid #b6bf78"></i>托斯卡尼</span>
+      <span><i class="sq" style="background:#f0e4c8;border:1px solid #cdaa68"></i>佛羅倫斯</span>
+      <span><i class="sq" style="background:#dde0e5;border:1px solid #9aa3b0"></i>米蘭</span>
+      <span style="color:var(--ochre)">★ 重要日</span>
+    </div>
+  </div>
+
+  <!-- CITIES -->
+  <div class="sh"><span>Itinerario</span><span class="zh">城市總表</span></div>
+  <div class="cities">
+
+    <div class="cityrow">
+      <div class="cl">
+        <div class="nm">01 · Venezia</div>
+        <div class="zh">威尼斯</div>
+        <div class="rng">Day 1–3 · 1/28–1/30</div>
+      </div>
+      <div class="body">
+        <p><span class="lbl">景點</span>聖馬可廣場與大教堂、總督宮與嘆息橋、里阿爾托橋、彩色島 Burano、玻璃島 Murano、嘉年華開幕 (Cannaregio)</p>
+        <p><span class="lbl">飲食</span>Cicchetti 小酒館、墨魚燉飯、Sarde in saor、Frittelle 嘉年華油炸甜點、Spritz</p>
+        <p><span class="lbl">提醒</span><b>1/30 為嘉年華 2027 開幕日</b>;本島住宿極搶手請數月前訂;Day 3 改住機場附近最聰明;備防水鞋對應 acqua alta;日落 17:30 室內景點放下午</p>
+      </div>
+    </div>
+
+    <div class="cityrow">
+      <div class="cl">
+        <div class="nm">02 · Bari</div>
+        <div class="zh">巴里 · 普利亞</div>
+        <div class="rng">Day 4–5 · 1/31–2/1</div>
+      </div>
+      <div class="body">
+        <p><span class="lbl">景點</span>巴里老城 Bari Vecchia、聖尼可拉聖殿、Arco Basso 貓耳朵麵巷、Alberobello 錐頂石屋 (世遺)、Polignano a Mare ?</p>
+        <p><span class="lbl">飲食</span>Orecchiette、Burrata、Focaccia barese、Bombette 起司肉捲、Taralli</p>
+        <p><span class="lbl">提醒</span>威尼斯→巴里<b>搭機 1.5h</b>;Day 5 租車或包車一日遊;南義冬天較溫和但店家午後常午休</p>
+      </div>
+    </div>
+
+    <div class="cityrow">
+      <div class="cl">
+        <div class="nm">03 · Matera</div>
+        <div class="zh">馬泰拉</div>
+        <div class="rng">Day 6–7 · 2/2–2/3</div>
+      </div>
+      <div class="body">
+        <p><span class="lbl">景點</span>Sassi 石窟區 (世遺)、岩洞教堂、Casa Grotta 石窟民居、馬泰拉大教堂、觀景台 Belvedere</p>
+        <p><span class="lbl">飲食</span>Pane di Matera IGP、Peperoni cruschi、Crapiata 豆湯、Orecchiette、Caciocavallo</p>
+        <p><span class="lbl">提醒</span>巴里→馬泰拉<b>直達巴士 1h</b>;<b>務必住一晚石窟旅館</b>;石階多備好走鞋;冬夜可達 0°C</p>
+      </div>
+    </div>
+
+    <div class="cityrow">
+      <div class="cl">
+        <div class="nm">04 · Napoli</div>
+        <div class="zh">那不勒斯</div>
+        <div class="rng">Day 8–9 · 2/4–2/5</div>
+      </div>
+      <div class="body">
+        <p><span class="lbl">景點</span>龐貝古城、國立考古博物館、Spaccanapoli 老街、新堡 / 蛋堡海濱、那不勒斯地下城 ?</p>
+        <p><span class="lbl">飲食</span>拿坡里披薩 (Da Michele / Sorbillo)、Sfogliatella、水牛莫札瑞拉、Babà</p>
+        <p><span class="lbl">提醒</span>馬泰拉→那不勒斯<b>直達巴士 4h</b> (不必繞回巴里);<b>阿瑪菲海岸 2 月停擺</b>建議跳過;市區防扒</p>
+      </div>
+    </div>
+
+    <div class="cityrow">
+      <div class="cl">
+        <div class="nm">05 · Roma</div>
+        <div class="zh">羅馬</div>
+        <div class="rng">Day 10–13 · 2/6–2/9</div>
+      </div>
+      <div class="body">
+        <p><span class="lbl">景點</span>競技場 + 古羅馬廣場、萬神殿、特雷維噴泉、納沃納廣場、梵蒂岡 (博物館 + 聖彼得)、波各賽美術館</p>
+        <p><span class="lbl">飲食</span>Carbonara · Cacio e pepe · Amatriciana 三大羅馬麵、烤朝鮮薊、Supplì、Saltimbocca</p>
+        <p><span class="lbl">提醒</span><b>2/7 週日梵蒂岡休館</b>排到 Day 12 (週一);競技場、梵蒂岡、波各賽<b>務必預約</b>;教堂遮肩蓋膝</p>
+      </div>
+    </div>
+
+    <div class="cityrow">
+      <div class="cl">
+        <div class="nm">06 · Toscana</div>
+        <div class="zh">托斯卡尼</div>
+        <div class="rng">Day 14–15 · 2/10–2/11</div>
+      </div>
+      <div class="body">
+        <p><span class="lbl">景點</span>西恩納 Piazza del Campo + 大教堂 (世遺)、Mangia 塔、聖吉米尼亞諾 (世遺)、蒙特里吉歐尼、奧爾維耶托 (途中)</p>
+        <p><span class="lbl">飲食</span>Bistecca alla Fiorentina、Pici 手工麵、Pecorino、Chianti / Brunello、Ribollita 蔬菜濃湯</p>
+        <p><span class="lbl">提醒</span><b>必須租車</b>;住西恩納古城內 (詳見住宿表);ZTL 管制請停城外;冬季鄉道注意薄霧結霜</p>
+      </div>
+    </div>
+
+    <div class="cityrow">
+      <div class="cl">
+        <div class="nm">07 · Firenze</div>
+        <div class="zh">佛羅倫斯</div>
+        <div class="rng">Day 16–18 · 2/12–2/14</div>
+      </div>
+      <div class="body">
+        <p><span class="lbl">景點</span>聖母百花大教堂 + 圓頂、烏菲茲美術館、學院美術館 (大衛像)、老橋 Ponte Vecchio、米開朗基羅廣場</p>
+        <p><span class="lbl">飲食</span>佛羅倫斯丁骨牛排、Lampredotto 牛肚包、Schiacciata、Cantucci + Vin Santo、Vivoli Gelato</p>
+        <p><span class="lbl">提醒</span>烏菲茲 / 學院 / 圓頂<b>限時預約</b>提早 1–2 個月訂;<b>2/14 情人節務必訂晚餐</b>;烏菲茲第一場 8:15 入場最佳</p>
+      </div>
+    </div>
+
+    <div class="cityrow">
+      <div class="cl">
+        <div class="nm">08 · Milano</div>
+        <div class="zh">米蘭</div>
+        <div class="rng">Day 19–21 · 2/15–2/17</div>
+      </div>
+      <div class="body">
+        <p><span class="lbl">景點</span>米蘭大教堂 + 屋頂、艾曼紐二世迴廊、《最後的晚餐》、布雷拉美術館、斯福爾扎城堡、Navigli 運河區</p>
+        <p><span class="lbl">飲食</span>Risotto alla Milanese、Cotoletta 炸牛排、Ossobuco、Aperitivo、Panettone</p>
+        <p><span class="lbl">提醒</span><b>《最後的晚餐》週一休館 → 只能 Day 20 (2/16 週二) 看</b>,提早 1–2 個月訂票;Day 21 11:00 班機,06:30–07:00 出發機場;住 Centrale 附近最順</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="head">
+    <div>
+      <div class="ttl disp" style="font-size:16pt">關鍵提醒 · 住宿 · 預算</div>
+      <div class="zh">Note Importanti · Alloggi · Budget</div>
+    </div>
+    <div class="meta"><b>2027 / 1 / 28 → 2 / 17</b>義大利冬季 21 天 (續頁)</div>
+  </div>
+
+  <!-- CRITICAL FLAGS -->
+  <div class="sh"><span>Avvisi Importanti</span><span class="zh">六大關鍵提醒</span></div>
+
+  <div class="flagbox">
+    <h4>🎭 威尼斯嘉年華 2027 開幕日 · Day 3 (1/30 週六)</h4>
+    本行程 Day 3 正好是 2027 嘉年華<b>官方開幕日</b> (整個嘉年華 1/30–2/9)。Cannaregio 區傍晚有水上開幕表演 Amoris Causa。本島住宿價格翻倍、極難訂,Day 3 改住威尼斯機場附近反而省事且便宜。<b>務必出發前數月就訂房。</b>
+  </div>
+
+  <div class="flagbox warn">
+    <h4>⚠️《最後的晚餐》週一休館 — 只能 Day 20 看</h4>
+    本行程 Day 19 (2/15 週一) 與抵達米蘭同日,當日<b>《最後的晚餐》與布雷拉美術館都休館</b>。唯一機會在 Day 20 (2/16 週二),須於出發前 <b>1–2 個月</b>就上 <a href="https://cenacolovinciano.org" target="_blank">cenacolovinciano.org</a> 預約。
+  </div>
+
+  <div class="flagbox warn">
+    <h4>⚠️ 梵蒂岡博物館週日休館 — Day 11 不要排</h4>
+    Day 11 (2/7 週日) 梵蒂岡博物館<b>休館</b> (僅每月最後週日免費開放,本日不符)。已將梵蒂岡排到 Day 12 (2/8 週一,梵蒂岡開放)。Day 11 改安排巴洛克市心 + 波各賽美術館 (週日有開,須預約)。
+  </div>
+
+  <div class="flagbox">
+    <h4>⚠️ 阿瑪菲海岸 2 月幾乎停擺</h4>
+    阿瑪菲、波西塔諾、卡布里冬天大量旅館餐廳<b>歇冬</b>,渡輪減班、卡布里藍洞 11–3 月關閉。建議將 Day 9 全天投入<b>龐貝 + 國立考古博物館</b>(博物館有龐貝壁畫精華),阿瑪菲留待夏季再訪。
+  </div>
+
+  <div class="flagbox">
+    <h4>💕 2/14 情人節 (Day 18) 在佛羅倫斯</h4>
+    熱門餐廳一定要事先訂位 (建議 Buca Lapi、Trattoria Sostanza、Cammillo 等)。同一天是<b>週日</b>,所有美術館有開,把 Duomo 圓頂登頂、Boboli 花園安排這天剛好。
+  </div>
+
+  <div class="flagbox">
+    <h4>✈️ Day 21 離境 · 2/17 (週三) 11:00 班機</h4>
+    Malpensa 國際線建議<b>提前 3 小時報到</b> (08:00 前抵機場)。Malpensa Express 由 Milano Centrale 約 50 分鐘,加買票時間,建議 <b>06:30–07:00 出旅館</b>。住宿選 Milano Centrale 附近最方便。
+  </div>
+
+  <!-- WINTER NOTES -->
+  <div class="sh"><span>Note di viaggio</span><span class="zh">冬季注意事項</span></div>
+  <div class="notes2">
+    <div class="nt"><span class="n">1</span><h5>氣溫穿著</h5><p>北部 0–8°C 多霧、中部 3–12°C、南部 6–14°C 較溫和。<b>洋蔥式穿搭</b>、防風防水外套、好走的防水鞋、圍巾手套。</p></div>
+    <div class="nt"><span class="n">2</span><h5>日照短</h5><p>日落約 <b>17:30</b>。室外景點放上午,博物館放下午。早起為王。</p></div>
+    <div class="nt"><span class="n">3</span><h5>威尼斯水患 acqua alta</h5><p>1–2 月為高潮位季。下載 <b>Hi!Tide Venice</b> app;超市有便宜拋棄式雨鞋套。</p></div>
+    <div class="nt"><span class="n">4</span><h5>多館週一休</h5><p>《最後的晚餐》、烏菲茲、學院、布雷拉、Bargello 皆週一休。本行程已避開。</p></div>
+    <div class="nt"><span class="n">5</span><h5>城際交通</h5><p>威尼斯→巴里<b>飛機</b>;馬泰拉→那不勒斯<b>直達巴士</b> (不繞巴里);其餘以 Trenitalia / Italo 高鐵串聯。</p></div>
+    <div class="nt"><span class="n">6</span><h5>租車與 ZTL</h5><p>普利亞 + 托斯卡尼建議租車。歷史城區皆有 <b>ZTL 管制</b>,誤入會被攝影開罰。</p></div>
+    <div class="nt"><span class="n">7</span><h5>預約清單</h5><p>《最後的晚餐》· 烏菲茲 · 學院 · 圓頂 · 競技場 · 梵蒂岡 · 波各賽 · 龐貝。出發前 <b>1–2 個月</b>訂齊。</p></div>
+    <div class="nt"><span class="n">8</span><h5>用餐文化</h5><p>午餐 13:00 / 晚餐 20:00 後;餐廳收<b>桌費 coperto</b>;水須選 gassata 或 naturale,通常付費。</p></div>
+    <div class="nt"><span class="n">9</span><h5>治安</h5><p>那不勒斯、羅馬車站地鐵防扒;<b>慎防「簽名 / 手環」搭訕</b>;貴重物品分開放。</p></div>
+    <div class="nt"><span class="n">10</span><h5>住宿稅 + 入城費</h5><p>各城收每人每晚住宿稅,現場付。威尼斯旺季對當日往返遊客有入城費 (嘉年華期間多豁免)。</p></div>
+    <div class="nt"><span class="n">11</span><h5>通訊 · 退稅</h5><p>備<b>歐洲 eSIM</b>。非歐盟單店達門檻可辦<b>退稅 Tax Free</b>,結帳索取退稅單,離境機場海關蓋章。</p></div>
+    <div class="nt"><span class="n">12</span><h5>緊急電話</h5><p>歐洲通用 <b>112</b>。投保旅遊險。</p></div>
+  </div>
+
+  <!-- HOTELS -->
+  <div class="sh"><span>Alloggi consigliati</span><span class="zh">推薦住宿(含地圖連結)</span></div>
+  <div class="hotels">
+
+    <div class="hgroup">
+      <h5>馬泰拉 · 石窟旅館 <span>Day 6–7</span></h5>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Sextantio+Le+Grotte+della+Civita+Matera" target="_blank"><b>Sextantio Le Grotte della Civita</b></a><br><span class="desc">城內最具代表性的石窟旅館,蠟燭照明、極簡氛圍</span></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Corte+San+Pietro+Matera" target="_blank"><b>Corte San Pietro</b></a><br><span class="desc">口碑極佳的精品石窟旅館</span></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Aquatio+Cave+Luxury+Hotel+SPA+Matera" target="_blank"><b>Aquatio Cave Luxury Hotel &amp; SPA</b></a><br><span class="desc">含 SPA,冬天泡溫水池放鬆</span></li>
+      </ul>
+    </div>
+
+    <div class="hgroup">
+      <h5>西恩納 · 古城內 <span>Day 14–15</span></h5>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Palazzo+Ravizza+Siena" target="_blank"><b>Palazzo Ravizza</b></a><br><span class="desc">17 世紀宅邸改建,古典溫暖、含暖氣壁爐</span></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Athena+Siena" target="_blank"><b>Hotel Athena</b></a><br><span class="desc">現代 4 星、含停車場(自駕友善)、城牆邊 Duomo 景</span></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Campo+Regio+Relais+Siena" target="_blank"><b>Campo Regio Relais</b></a><br><span class="desc">小型精品旅館,露台可眺望大教堂</span></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=NOF+Hotel+Siena" target="_blank"><b>NOF Hotel</b></a><br><span class="desc">現代設計風,價格中等</span></li>
+      </ul>
+    </div>
+
+    <div class="hgroup" style="grid-column:1 / -1">
+      <h5>托斯卡尼 · 鄉間替代選項(冬季少數開放) <span>需自駕</span></h5>
+      <ul style="display:grid;grid-template-columns:1fr 1fr;gap:0 14px">
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Castello+di+Spaltenna+Gaiole+in+Chianti" target="_blank"><b>Castello di Spaltenna</b></a><br><span class="desc">Gaiole in Chianti · 城堡改建酒店</span></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Borgo+Argenina+Gaiole+in+Chianti" target="_blank"><b>Borgo Argenina</b></a><br><span class="desc">中世紀小村莊改建,庭院寧靜</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- BUDGET -->
+  <div class="sh"><span>Budget</span><span class="zh">概略預算(兩人 21 天)</span></div>
+  <div class="budget">
+    <div class="sub">冬季為義大利淡季,整體比夏季便宜。依季節、住宿等級與訂票時機浮動,僅供參考。</div>
+    <table>
+      <tr><td class="cat">住宿</td><td class="nt">含威尼斯嘉年華 + 石窟旅館 + 機場旅館</td><td class="amt">€3,600–6,500</td></tr>
+      <tr><td class="cat">餐飲</td><td class="nt">含情人節晚餐 + 拿坡里披薩 + 托斯卡尼牛排</td><td class="amt">€1,500–2,400</td></tr>
+      <tr><td class="cat">城際交通</td><td class="nt">威尼斯–巴里機票 + 高鐵 + 巴士 + 兩段租車</td><td class="amt">€1,000–1,600</td></tr>
+      <tr><td class="cat">門票與導覽</td><td class="nt">梵蒂岡 · 烏菲茲 · 競技場 · 龐貝 · 最後的晚餐</td><td class="amt">€500–800</td></tr>
+      <tr><td class="cat">市內交通與雜支</td><td class="nt">地鐵 · 水上巴士 · 計程車 · 小費</td><td class="amt">€400–700</td></tr>
+      <tr class="tot"><td class="cat">合計</td><td class="nt"></td><td class="amt">€7,000–12,000</td></tr>
+    </table>
+  </div>
+
+  <div class="foot">
+    Buon viaggio! · 願這趟二十一天的冬季義大利之旅,留下滿滿回憶。
+    <small>2027/1/28 – 2/17 · 威尼斯 · 巴里 · 馬泰拉 · 那不勒斯 · 羅馬 · 托斯卡尼 · 佛羅倫斯 · 米蘭</small>
+  </div>
+</div>
+
+</body>
+</html>

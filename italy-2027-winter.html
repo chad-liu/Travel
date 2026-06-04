@@ -124,6 +124,62 @@ section{position:relative;z-index:2;padding:clamp(64px,9vw,130px) clamp(20px,6vw
 .card li .it{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--ink-soft);font-size:.88rem}
 .opt{font-size:.72rem;color:#9a7b52;background:rgba(199,146,55,.16);padding:1px 7px;border-radius:10px;margin-left:4px;white-space:nowrap}
 
+/* CALENDAR */
+#calendar .cal{background:linear-gradient(160deg,#fbf4e6,#f1e5cd);border:1px solid var(--line);padding:clamp(16px,2.5vw,28px);border-radius:6px;box-shadow:0 18px 40px -30px var(--shadow)}
+.cal-head{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:10px}
+.cal-head div{font-family:"Noto Serif TC",serif;font-size:.78rem;letter-spacing:.05em;color:var(--ink-soft);text-align:center;padding:4px 0;font-weight:600}
+.cal-head div:nth-child(6),.cal-head div:nth-child(7){color:var(--terra)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.cal-cell{aspect-ratio:1/1.15;min-height:88px;border-radius:5px;padding:9px 8px;display:flex;flex-direction:column;background:rgba(255,255,255,.55);border:1px solid rgba(168,65,42,.1);position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.cal-cell:not(.empty):hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px var(--shadow)}
+.cal-cell.empty{background:transparent;border:1px dashed rgba(168,65,42,.12);opacity:.5}
+.cal-cell .date{font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-weight:600;line-height:1;color:var(--ink)}
+.cal-cell .date .mo{font-size:.65rem;color:var(--ink-soft);margin-left:3px;font-weight:400;font-style:italic}
+.cal-cell .dn{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-top:3px;font-family:"Cormorant Garamond",serif}
+.cal-cell .act{font-size:.7rem;color:var(--ink);margin-top:auto;line-height:1.35;font-family:"Noto Serif TC",serif;font-weight:500}
+.cal-cell.hl::after{content:"★";position:absolute;top:5px;right:6px;font-size:.7rem;color:var(--ochre);font-family:"Cormorant Garamond",serif}
+.c-venezia{background:linear-gradient(160deg,rgba(29,91,94,.09),rgba(29,91,94,.17));border-color:rgba(29,91,94,.28)}
+.c-venezia .dn{color:var(--teal-deep)}
+.c-bari{background:linear-gradient(160deg,rgba(199,146,55,.12),rgba(199,146,55,.22));border-color:rgba(199,146,55,.35)}
+.c-bari .dn{color:#8a6118}
+.c-matera{background:linear-gradient(160deg,rgba(120,75,40,.12),rgba(120,75,40,.22));border-color:rgba(120,75,40,.35)}
+.c-matera .dn{color:#5e3812}
+.c-napoli{background:linear-gradient(160deg,rgba(168,65,42,.12),rgba(168,65,42,.22));border-color:rgba(168,65,42,.35)}
+.c-napoli .dn{color:var(--terra-deep)}
+.c-roma{background:linear-gradient(160deg,rgba(138,50,32,.14),rgba(138,50,32,.24));border-color:rgba(138,50,32,.4)}
+.c-roma .dn{color:#5e2010}
+.c-toscana{background:linear-gradient(160deg,rgba(118,128,60,.13),rgba(118,128,60,.22));border-color:rgba(118,128,60,.35)}
+.c-toscana .dn{color:#4e561a}
+.c-firenze{background:linear-gradient(160deg,rgba(184,137,58,.13),rgba(184,137,58,.23));border-color:rgba(184,137,58,.36)}
+.c-firenze .dn{color:#704f10}
+.c-milano{background:linear-gradient(160deg,rgba(60,75,90,.1),rgba(60,75,90,.2));border-color:rgba(60,75,90,.35)}
+.c-milano .dn{color:#1f2c3a}
+.cal-legend{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 16px;font-size:.78rem;font-family:"Noto Serif TC",serif;color:var(--ink-soft)}
+.cal-legend span{display:inline-flex;align-items:center;gap:6px}
+.cal-legend span::before{content:"";width:12px;height:12px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.1)}
+.cal-legend .lv::before{background:rgba(29,91,94,.2)}
+.cal-legend .lb::before{background:rgba(199,146,55,.25)}
+.cal-legend .lm::before{background:rgba(120,75,40,.25)}
+.cal-legend .ln::before{background:rgba(168,65,42,.25)}
+.cal-legend .lr::before{background:rgba(138,50,32,.27)}
+.cal-legend .lt::before{background:rgba(118,128,60,.25)}
+.cal-legend .lf::before{background:rgba(184,137,58,.26)}
+.cal-legend .li::before{background:rgba(60,75,90,.23)}
+@media(max-width:680px){
+  .cal-head{display:none}
+  .cal-grid{grid-template-columns:1fr;gap:6px}
+  .cal-cell{aspect-ratio:auto;min-height:auto;flex-direction:row;align-items:center;gap:14px;padding:11px 14px}
+  .cal-cell.empty{display:none}
+  .cal-cell .date{font-size:1.2rem;flex:none;width:48px}
+  .cal-cell .dn{margin:0;flex:none;width:50px}
+  .cal-cell .act{margin:0;flex:1;font-size:.86rem}
+}
+
+/* External map links in callouts */
+.callout a.maplink{color:var(--terra-deep);text-decoration:underline;text-decoration-color:rgba(168,65,42,.4);text-decoration-thickness:1px;text-underline-offset:3px;transition:text-decoration-color .2s}
+.callout a.maplink:hover{text-decoration-color:var(--terra-deep)}
+.callout a.maplink::after{content:"↗";font-size:.7em;margin-left:2px;vertical-align:super;opacity:.55}
+
 #notes{background:var(--teal-deep);color:var(--paper);z-index:2}
 #notes::before{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 20h40M20 0v40' stroke='%23f3e9d8' stroke-width='.5'/%3E%3C/svg%3E")}
 #notes .sec-head .tag{color:var(--ochre);border-color:var(--ochre)}
@@ -158,6 +214,97 @@ footer .tri::after{content:"❖";position:absolute;top:-12px;left:50%;transform:
 
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
+
+/* PRINT */
+@media print {
+  @page { margin: 1.4cm; size: A4 }
+  *{box-shadow:none !important}
+  html,body{background:#fff !important;color:#000 !important;font-size:9.5pt;line-height:1.5}
+  body::before,nav,.scroll-cue,.hero-meta,.hero-kicker,.hero-dates,.hero::after{display:none !important}
+  .hero{min-height:auto;padding:0 0 14pt;page-break-after:avoid}
+  .hero h1{font-size:28pt;color:#000 !important}
+  .hero h1 .it{color:#444 !important;display:inline}
+  .hero h1 .l1,.hero h1 .l2{animation:none;opacity:1}
+  .hero-sub{font-size:10pt;max-width:none;color:#333 !important;margin-top:8pt}
+  section{padding:14pt 0 !important;page-break-inside:auto}
+  .wrap{max-width:100%}
+  .sec-head{margin-bottom:14pt}
+  .sec-head h2{font-size:18pt;color:#000 !important}
+  .sec-head h2 em{color:#555 !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  .legend{color:#555 !important;border-color:#999 !important}
+
+  #route .route-grid{grid-template-columns:200px 1fr;gap:20pt}
+  .route-map svg{max-width:200px}
+  .route-item{padding:5pt 0;font-size:9pt}
+  .route-item .num{font-size:1.1rem}
+  .route-item .city{font-size:.95rem}
+  .route-item .days{background:#eee !important;color:#000 !important;font-size:.7rem}
+
+  #calendar{page-break-inside:avoid}
+  .cal{padding:10pt !important;background:#fff !important;border:1px solid #bbb !important}
+  .cal-cell{min-height:60px;padding:5pt 4pt;background:#fafafa !important;border:1px solid #ddd !important}
+  .cal-cell .date{font-size:11pt}
+  .cal-cell .dn{font-size:6pt}
+  .cal-cell .act{font-size:6.5pt}
+  .cal-legend{font-size:7pt}
+
+  .city{padding-top:0;page-break-inside:avoid}
+  .city + .city{margin-top:18pt;page-break-before:auto}
+  .city-bignum{display:none}
+  .city-head{margin-bottom:12pt}
+  .city-name{font-size:22pt;color:#000 !important}
+  .city-zh{font-size:14pt}
+  .city-intro{font-size:9.5pt;color:#333 !important;margin-top:8pt}
+  .city-meta .pill,.city-meta .pill.alt{background:#eee !important;color:#000 !important;border-color:#999 !important;font-size:7.5pt}
+
+  .callout{background:#f5efe0 !important;color:#000 !important;border-color:#aaa !important;page-break-inside:avoid;padding:10pt 12pt;margin:12pt 0 4pt}
+  .callout.warn{background:#faece6 !important}
+  .callout.fest{background:#e6efef !important}
+  .callout h4{font-size:10pt;color:#000 !important}
+  .callout p,.callout li{color:#000 !important;font-size:8.5pt}
+
+  .days-list{margin:14pt 0}
+  .day{padding:6pt 0 6pt 22pt}
+  .day .dnum{font-size:8pt;color:#000 !important}
+  .day .dnum .wd{color:#555 !important}
+  .day .dtitle{font-size:9.5pt}
+  .day .ddesc{font-size:8.5pt;color:#333 !important}
+
+  .cards{grid-template-columns:1fr 1fr 1fr;gap:8pt;page-break-inside:avoid}
+  .card{background:#fafafa !important;border:1px solid #ccc !important;padding:10pt 12pt;page-break-inside:avoid}
+  .card h4{font-size:9.5pt}
+  .card h4 .ic{display:none}
+  .card li{font-size:8pt;padding:3pt 0 3pt 12pt;border-color:#ddd !important}
+  .card li b{color:#000 !important}
+  .card li .it,.opt{color:#666 !important;background:#eee !important}
+
+  #notes{background:#fff !important;color:#000 !important}
+  #notes::before{display:none}
+  #notes .sec-head h2,#notes .note h4{color:#000 !important}
+  #notes .sec-head h2 em,.note .nnum{color:#666 !important}
+  #notes .note p,#notes .note p b{color:#222 !important}
+  .notes-grid{grid-template-columns:1fr 1fr 1fr;gap:12pt}
+  .note{page-break-inside:avoid}
+  .note .nnum{font-size:14pt}
+  .note h4{font-size:9.5pt}
+  .note p{font-size:8pt}
+
+  .budget{margin-top:14pt;padding-top:14pt;border-color:#999 !important}
+  .budget h3{color:#000 !important;font-size:11pt}
+  .budget .sub{color:#555 !important}
+  .brow{font-size:8.5pt;padding:6pt 2pt;border-color:#ccc !important}
+  .brow .bcat{color:#000 !important}
+  .brow .bnote{color:#555 !important}
+  .brow .bnum{color:#000 !important;font-size:10pt}
+  .brow.tot .bcat,.brow.tot .bnum{color:#000 !important}
+
+  footer{padding:20pt 0 8pt;background:#fff !important}
+  footer .ar{color:#000 !important;font-size:14pt}
+  footer .fz,footer .fmeta{color:#555 !important}
+  a{color:#000 !important;text-decoration:none !important}
+  .callout a.maplink::after{display:none}
+}
 </style>
 </head>
 <body>
@@ -166,6 +313,7 @@ footer .tri::after{content:"❖";position:absolute;top:-12px;left:50%;transform:
   <div class="nav-logo">Viaggio in <span>Italia</span> · 2027</div>
   <div class="nav-links">
     <a href="#route">路線</a>
+    <a href="#calendar">行事曆</a>
     <a href="#venezia">威尼斯</a>
     <a href="#bari">巴里</a>
     <a href="#matera">馬泰拉</a>
@@ -230,6 +378,64 @@ footer .tri::after{content:"❖";position:absolute;top:-12px;left:50%;transform:
       </div>
     </div>
     <p class="legend">標示 <span class="opt">?</span> 的景點為機動行程,當時間或體力不足時可彈性略過。所有日期均已對應 2027 年實際星期幾並考量各館休館日。</p>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <span class="tag">Calendario</span>
+      <h2 class="serif">21 天行事曆 <em>il calendario</em></h2>
+    </div>
+    <div class="cal">
+      <div class="cal-head"><div>週一</div><div>週二</div><div>週三</div><div>週四</div><div>週五</div><div>週六</div><div>週日</div></div>
+      <div class="cal-grid">
+        <!-- W1: 1/26 Mon — 2/1 Sun -->
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell c-venezia"><div class="date">28<span class="mo">1月</span></div><div class="dn">Day 1</div><div class="act">抵米蘭→威尼斯</div></div>
+        <div class="cal-cell c-venezia"><div class="date">29</div><div class="dn">Day 2</div><div class="act">威尼斯本島</div></div>
+        <div class="cal-cell c-venezia hl"><div class="date">30</div><div class="dn">Day 3</div><div class="act">離島+嘉年華開幕</div></div>
+        <div class="cal-cell c-bari"><div class="date">31</div><div class="dn">Day 4</div><div class="act">飛巴里+老城</div></div>
+        <!-- W2: 2/1 Mon — 2/7 Sun -->
+        <div class="cal-cell c-bari"><div class="date">1<span class="mo">2月</span></div><div class="dn">Day 5</div><div class="act">Alberobello</div></div>
+        <div class="cal-cell c-matera"><div class="date">2</div><div class="dn">Day 6</div><div class="act">抵馬泰拉</div></div>
+        <div class="cal-cell c-matera"><div class="date">3</div><div class="dn">Day 7</div><div class="act">Sassi 深入</div></div>
+        <div class="cal-cell c-napoli"><div class="date">4</div><div class="dn">Day 8</div><div class="act">抵那不勒斯</div></div>
+        <div class="cal-cell c-napoli"><div class="date">5</div><div class="dn">Day 9</div><div class="act">龐貝+博物館</div></div>
+        <div class="cal-cell c-roma"><div class="date">6</div><div class="dn">Day 10</div><div class="act">抵羅馬+競技場</div></div>
+        <div class="cal-cell c-roma hl"><div class="date">7</div><div class="dn">Day 11</div><div class="act">巴洛克+波各賽<br><small style="opacity:.7">(梵蒂岡休)</small></div></div>
+        <!-- W3: 2/8 Mon — 2/14 Sun -->
+        <div class="cal-cell c-roma"><div class="date">8</div><div class="dn">Day 12</div><div class="act">梵蒂岡完整日</div></div>
+        <div class="cal-cell c-roma"><div class="date">9</div><div class="dn">Day 13</div><div class="act">羅馬尾聲</div></div>
+        <div class="cal-cell c-toscana"><div class="date">10</div><div class="dn">Day 14</div><div class="act">羅馬→西恩納</div></div>
+        <div class="cal-cell c-toscana"><div class="date">11</div><div class="dn">Day 15</div><div class="act">San Gimignano</div></div>
+        <div class="cal-cell c-firenze"><div class="date">12</div><div class="dn">Day 16</div><div class="act">Chianti→佛羅倫斯</div></div>
+        <div class="cal-cell c-firenze"><div class="date">13</div><div class="dn">Day 17</div><div class="act">烏菲茲+學院</div></div>
+        <div class="cal-cell c-firenze hl"><div class="date">14</div><div class="dn">Day 18</div><div class="act">Duomo 圓頂+情人節</div></div>
+        <!-- W4: 2/15 Mon — 2/17 Wed (rest empty) -->
+        <div class="cal-cell c-milano"><div class="date">15</div><div class="dn">Day 19</div><div class="act">→ 米蘭<br><small style="opacity:.7">(博物館多休)</small></div></div>
+        <div class="cal-cell c-milano hl"><div class="date">16</div><div class="dn">Day 20</div><div class="act">最後的晚餐</div></div>
+        <div class="cal-cell c-milano"><div class="date">17</div><div class="dn">Day 21</div><div class="act">11:00 離境 ✈</div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
+      <div class="cal-legend">
+        <span class="lv">威尼斯</span>
+        <span class="lb">巴里</span>
+        <span class="lm">馬泰拉</span>
+        <span class="ln">那不勒斯</span>
+        <span class="lr">羅馬</span>
+        <span class="lt">托斯卡尼</span>
+        <span class="lf">佛羅倫斯</span>
+        <span class="li">米蘭</span>
+        <span style="color:var(--ochre)">★ 重要日 (嘉年華 / 情人節 / 最後的晚餐)</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -344,9 +550,9 @@ footer .tri::after{content:"❖";position:absolute;top:-12px;left:50%;transform:
           <h4>🛏️ 住宿建議:石窟旅館</h4>
           <p>強烈建議至少一晚住 Sassi 區內的<b>石窟旅館</b>。岩壁中的房間配現代衛浴與暖氣,屋頂或露台可俯瞰對岸峽谷。</p>
           <ul>
-            <li><b>Sextantio Le Grotte della Civita</b>｜全城最具代表性的石窟旅館,蠟燭照明、極簡氛圍</li>
-            <li><b>Corte San Pietro</b>｜口碑極佳的精品石窟旅館</li>
-            <li><b>Aquatio Cave Luxury Hotel & SPA</b>｜含 SPA,冬天泡溫水池放鬆</li>
+            <li><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Sextantio+Le+Grotte+della+Civita+Matera" target="_blank" rel="noopener"><b>Sextantio Le Grotte della Civita</b></a>｜全城最具代表性的石窟旅館,蠟燭照明、極簡氛圍</li>
+            <li><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Corte+San+Pietro+Matera" target="_blank" rel="noopener"><b>Corte San Pietro</b></a>｜口碑極佳的精品石窟旅館</li>
+            <li><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Aquatio+Cave+Luxury+Hotel+SPA+Matera" target="_blank" rel="noopener"><b>Aquatio Cave Luxury Hotel &amp; SPA</b></a>｜含 SPA,冬天泡溫水池放鬆</li>
             <li>注意:石階多、無電梯,建議行李輕量,大件可考慮寄放巴里</li>
           </ul>
         </div>
@@ -498,12 +704,12 @@ footer .tri::after{content:"❖";position:absolute;top:-12px;left:50%;transform:
           <h4>🛏️ 住宿建議 (Day 14–15)</h4>
           <p><b>強烈建議直接住西恩納古城內</b>。冬季托斯卡尼鄉間 agriturismo 多歇業 (尤其 1–2 月),住城內步行可達 Piazza del Campo 與大教堂,餐廳生活機能完整,夜裡安靜得彷彿包場。</p>
           <ul>
-            <li><b>Palazzo Ravizza</b>｜17 世紀宅邸改建,古典溫暖、含暖氣壁爐</li>
-            <li><b>Hotel Athena</b>｜現代 4 星、含停車場 (自駕友善)、城牆邊有 Duomo 景</li>
-            <li><b>Campo Regio Relais</b>｜小型精品旅館,露台可眺望大教堂</li>
-            <li><b>NOF Hotel</b>｜現代設計風、價格中等</li>
+            <li><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Palazzo+Ravizza+Siena" target="_blank" rel="noopener"><b>Palazzo Ravizza</b></a>｜17 世紀宅邸改建,古典溫暖、含暖氣壁爐</li>
+            <li><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Athena+Siena" target="_blank" rel="noopener"><b>Hotel Athena</b></a>｜現代 4 星、含停車場 (自駕友善)、城牆邊有 Duomo 景</li>
+            <li><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Campo+Regio+Relais+Siena" target="_blank" rel="noopener"><b>Campo Regio Relais</b></a>｜小型精品旅館,露台可眺望大教堂</li>
+            <li><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=NOF+Hotel+Siena" target="_blank" rel="noopener"><b>NOF Hotel</b></a>｜現代設計風、價格中等</li>
           </ul>
-          <p>若仍想鄉間體驗:<b>Castello di Spaltenna</b> (Gaiole in Chianti) 或 <b>Borgo Argenina</b> 為少數冬季開放的選擇,但須自駕、餐廳選擇少。</p>
+          <p>若仍想鄉間體驗:<a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Castello+di+Spaltenna+Gaiole+in+Chianti" target="_blank" rel="noopener"><b>Castello di Spaltenna</b></a> (Gaiole in Chianti) 或 <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Borgo+Argenina+Gaiole+in+Chianti" target="_blank" rel="noopener"><b>Borgo Argenina</b></a> 為少數冬季開放的選擇,但須自駕、餐廳選擇少。</p>
         </div>
       </div>
 
